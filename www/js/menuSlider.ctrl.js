@@ -18,6 +18,11 @@ angular.module('missionhub')
   }).then(function(modal) {
     $scope.loginModal = modal;
   });
+  $ionicModal.fromTemplateUrl('personList/filters.html', {
+    scope: $scope
+  }).then(function(modal) {
+    that.filtersModal = modal;
+  });
 
   $scope.closeLogin = function() {
     $scope.loginModal.hide();
@@ -25,6 +30,13 @@ angular.module('missionhub')
 
   $scope.login = function() {
     $scope.loginModal.show();
+  };
+
+  this.openFilters = function() {
+    this.filtersModal.show();
+  }
+  $scope.closeFilters = function() {
+    that.filtersModal.hide();
   };
 
   // Perform the login action when the user submits the login form

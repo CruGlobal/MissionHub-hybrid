@@ -23,7 +23,7 @@ angular.module('missionhub', ['ionic'])
     url: '/app',
     abstract: true,
     templateUrl: 'personList/menu.html',
-    controller: 'AppCtrl'
+    controller: 'AppCtrl as app'
   })
 
   .state('app.index', {
