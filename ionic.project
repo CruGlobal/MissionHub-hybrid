@@ -1,0 +1,12 @@
+{
+  "name": "MissionHub H",
+  "app_id": "6c71c500",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}
