@@ -1,8 +1,11 @@
 angular.module('missionhub')
-  .factory('api', function($resource) {
+  .factory('api', function($resource, $q, loginDetails) {
     // put const here
     var that = this;
-    that.facebook_token = 'CAADULZADslC0BAEgWnMJujJ2ismp3DUX8M3kfOeZAbFAoFbzsI1XB3zUaDkZBntsm7UBPZBE0mac53lOusxAjoZBVqPTAVNOpfy2PkOOoZBTNeluIlttn3CZB8geiZCsCqpO1qlOHpZBZClLosVz0KoRz4ZCsmmonCuEm1OwDYo4QVmET8PJO1BiZCM9Tr5x943Vd51hagAH3bOmpYSwUcHbST9kyrCkSl98D8GXwmZC6XbBBqAZDZD';
+
+    function facebook_token() {
+      return loginDetails.token();
+    };
 
     //define methods
     function getMe() {
@@ -10,7 +13,12 @@ angular.module('missionhub')
     }
 
     function getPeople(config) {
-      var People = $resource('https://stage.missionhub.com/apis/v3/people/:id', {id:'@id', facebook_token: that.facebook_token});
+      if(!loginDetails.token()) {
+        var deferred = $q.defer();
+        deferred.resolve({people: []})
+        return deferred.promise;
+      }
+      var People = $resource('https://stage.missionhub.com/apis/v3/people/:id', {id:'@id', facebook_token: facebook_token()});
       if (config.id) {
         return People.query(config).$promise;
       }
@@ -26,4 +34,21 @@ angular.module('missionhub')
         get: getPeople
       }
     }
+  })
+
+  .factory('loginDetails', function () {
+    var tokenStorageKey = 'facebook_token';
+
+    function token(value) {
+      if(value) {
+        localStorage.setItem(tokenStorageKey, value);
+      }
+      else {
+        return localStorage.getItem(tokenStorageKey);
+      }
+    }
+
+    return {
+      token: token
+    };
   });

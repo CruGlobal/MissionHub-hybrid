@@ -1,6 +1,6 @@
 angular.module('missionhub')
 
-  .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+  .controller('AppCtrl', function($scope, $ionicModal, $timeout, loginDetails) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -19,7 +19,9 @@ angular.module('missionhub')
       hardwareBackButtonClose: false
     }).then(function(modal) {
       $scope.loginModal = modal;
-      //$scope.loginModal.show();
+      if(!loginDetails.token()) {
+        $scope.loginModal.show();
+      }
     });
     $ionicModal.fromTemplateUrl('personList/filters.html', {
       scope: $scope

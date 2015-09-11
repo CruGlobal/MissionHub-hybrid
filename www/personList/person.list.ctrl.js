@@ -17,7 +17,7 @@ angular.module('missionhub')
     config = config ? config : that.filters();
     return api.people.get(config).then(function(data) {
       that.people = that.people.concat(data.people);
-      that.hasMorePages = data.people.length < that.limit;
+      that.hasMorePages = data.people.length == that.limit;
     });
   };
 
