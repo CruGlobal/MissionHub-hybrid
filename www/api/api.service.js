@@ -20,7 +20,7 @@ angular.module('missionhub')
       }
       var People = $resource('https://stage.missionhub.com/apis/v3/people/:id', {id:'@id', facebook_token: facebook_token()});
       if (config.id) {
-        return People.query(config).$promise;
+        return People.get(config).$promise;
       }
       else {
         return People.get(config).$promise;

@@ -30,7 +30,7 @@ angular.module('missionhub', ['ionic', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'personList/person.list.html',
-        controller: 'PersonListCtrl as peopleList',
+        controller: 'PersonListCtrl as peopleList'
       }
     }
   })
@@ -40,7 +40,7 @@ angular.module('missionhub', ['ionic', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'profile/person.show.html',
-        controller: 'PersonShowCtrl'
+        controller: 'PersonShowCtrl as profile'
       }
     }
   });

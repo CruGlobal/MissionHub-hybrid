@@ -7,24 +7,29 @@ angular.module('missionhub')
   that.limit = 20;
   that.hasMorePages = true;
   that.filters = function() {
-    return {
+    var filters = {
       limit: that.limit,
       offset: that.offset
     };
+
+    if ($scope.searchTerm !== '') {
+      filters['filters[name_or_email_like]'] = $scope.searchTerm;
+    }
+
+    return filters;
   };
 
-  that.refresh = function(config) {
+  that.refresh = function(config, replacePeopleWithData) {
     config = config ? config : that.filters();
     return api.people.get(config).then(function(data) {
-      that.people = that.people.concat(data.people);
+      that.people = replacePeopleWithData ? data.people : that.people.concat(data.people);
       that.hasMorePages = data.people.length == that.limit;
     });
   };
 
   that.firstPage = function() {
     that.offset = 0;
-    that.people = [];
-    that.refresh(that.filters).then(function(data) {
+    that.refresh(that.filters(), true).then(function(data) {
       $scope.$broadcast('scroll.refreshComplete');
     }, function(error) {
       $scope.$broadcast('scroll.refreshComplete');
@@ -33,7 +38,7 @@ angular.module('missionhub')
 
   that.nextPage = function() {
     that.offset += that.limit;
-    that.refresh(that.filters).then(function() {
+    that.refresh().then(function() {
       $scope.$broadcast('scroll.infiniteScrollComplete');
     }, function(error) {
       $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -42,12 +47,7 @@ angular.module('missionhub')
 
   that.search = function(searchTerm) {
     that.offset = 0;
-    that.people = [];
-    var params = that.filters();
-    if (searchTerm !== '') {
-      params['filters[name_or_email_like]'] = searchTerm;
-    }
-    that.refresh(params);
+    that.refresh(that.filters(), true);
   };
 
 });
