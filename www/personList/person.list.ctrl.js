@@ -40,12 +40,14 @@ angular.module('missionhub')
     });
   };
 
-//  $scope.watch('searchTerm', function(newValue, oldValue) {
-//    if (newValue !== '') {
-//      var params = that.filters();
-//      params['name_or_email_like'] = newValue;
-//      that.refresh(params);
-//    }
-//  });
+  that.search = function(searchTerm) {
+    that.offset = 0;
+    that.people = [];
+    var params = that.filters();
+    if (searchTerm !== '') {
+      params['filters[name_or_email_like]'] = searchTerm;
+    }
+    that.refresh(params);
+  };
 
 });
