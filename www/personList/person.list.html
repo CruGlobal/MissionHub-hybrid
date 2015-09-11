@@ -1,5 +1,11 @@
 <ion-view view-title="" hide-back-button="true">
-  <ion-content>
+  <ion-header-bar class="bar-stable bar-subheader item-input-inset">
+      <label class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" ng-model="searchTerm" placeholder="Search">
+      </label>
+  </ion-header-bar>
+    <ion-content>
     <ion-refresher on-refresh="peopleList.firstPage()"></ion-refresher>
     <ion-list>
       <ion-item collection-repeat="person in peopleList.people" href="#/app/person/{{person.id}}">
