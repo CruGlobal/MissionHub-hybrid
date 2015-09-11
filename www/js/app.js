@@ -31,7 +31,7 @@ angular.module('missionhub', ['ionic', 'ngResource'])
     views: {
       'menuContent': {
         templateUrl: 'personList/person.list.html',
-        controller: 'PersonListCtrl as personList',
+        controller: 'PersonListCtrl as peopleList',
       }
     }
   })
