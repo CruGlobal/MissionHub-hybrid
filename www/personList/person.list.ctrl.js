@@ -1,11 +1,11 @@
 angular.module('missionhub')
-.controller('PersonListCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('PersonListCtrl', function($scope, api) {
+  var that = this;
+
+  that.people = [];
+
+  api.people.get({offset:0, limit:20}).then(function(data){
+    that.people = data.people;
+  });
+
 })

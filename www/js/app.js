@@ -1,5 +1,5 @@
 
-angular.module('missionhub', ['ionic'])
+angular.module('missionhub', ['ionic', 'ngResource'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -31,7 +31,7 @@ angular.module('missionhub', ['ionic'])
     views: {
       'menuContent': {
         templateUrl: 'personList/person.list.html',
-        controller: 'PersonListCtrl'
+        controller: 'PersonListCtrl as personList',
       }
     }
   })
