@@ -8,8 +8,10 @@
     <ion-content>
     <ion-refresher on-refresh="peopleList.firstPage()"></ion-refresher>
     <ion-list>
-      <ion-item collection-repeat="person in peopleList.people" href="#/app/person/{{person.id}}">
-          {{person.first_name}} {{person.last_name}}
+      <ion-item class="item-avatar" collection-repeat="person in peopleList.people" href="#/app/person/{{person.id}}">
+          <img ng-src="{{person.picture}}">
+          <h2>{{person.first_name}} {{person.last_name}}</h2>
+          <p>{{person.gender}}</p>
       </ion-item>
     </ion-list>
     <ion-infinite-scroll on-infinite="peopleList.nextPage()" distance="25%" ng-if="peopleList.hasMorePages"></ion-infinite-scroll>
