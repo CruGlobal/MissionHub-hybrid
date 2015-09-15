@@ -3,7 +3,7 @@ angular.module('missionhub')
   var that = this;
 
   that.people = [];
-  that.offset = 0;
+  that.offset = -20;
   that.limit = 20;
   that.hasMorePages = true;
   that.filters = function() {
@@ -12,7 +12,7 @@ angular.module('missionhub')
       offset: that.offset
     };
 
-    if ($scope.searchTerm !== '') {
+    if ($scope.searchTerm) {
       filters['filters[name_or_email_like]'] = $scope.searchTerm;
     }
 
@@ -29,18 +29,18 @@ angular.module('missionhub')
 
   that.firstPage = function() {
     that.offset = 0;
-    that.refresh(that.filters(), true).then(function(data) {
+    that.refresh(that.filters(), true).then(function() { // success
       $scope.$broadcast('scroll.refreshComplete');
-    }, function(error) {
+    }, function() { // error
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
 
   that.nextPage = function() {
     that.offset += that.limit;
-    that.refresh().then(function() {
+    that.refresh().then(function() { // succcess
       $scope.$broadcast('scroll.infiniteScrollComplete');
-    }, function(error) {
+    }, function() { // error
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   };
