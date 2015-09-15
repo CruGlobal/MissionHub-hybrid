@@ -51,6 +51,11 @@ angular.module('missionhub')
     that.refresh(that.filters(), true);
   };
 
+  that.pictureStyle = function(personModel) {
+    if(personModel) {
+      return 'url(' + that.picture(personModel) + ')'
+    }
+  }
   that.picture = function(personModel) {
     if(!personModel) {
       return '';

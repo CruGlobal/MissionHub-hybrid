@@ -12,7 +12,7 @@
     <ion-refresher on-refresh="peopleList.firstPage()"></ion-refresher>
     <ion-list>
       <ion-item class="item-avatar" collection-repeat="person in peopleList.people" href="#/app/person/{{person.id}}">
-        <img ng-src="{{peopleList.picture(person)}}">
+        <div class="item-image" ng-style="{'background-image':peopleList.pictureStyle(person)}"></div>
         <h2>{{person.first_name}} {{person.last_name}}</h2>
         <p>{{person.gender}}</p>
       </ion-item>
