@@ -6,6 +6,7 @@ angular.module('missionhub')
   that.offset = -20;
   that.limit = 20;
   that.hasMorePages = true;
+
   that.filters = function() {
     var filters = {
       limit: that.limit,
@@ -49,5 +50,16 @@ angular.module('missionhub')
     that.offset = 0;
     that.refresh(that.filters(), true);
   };
+
+  that.picture = function(personModel) {
+    if(!personModel) {
+      return '';
+    }
+    if(personModel.picture) {
+      return personModel.picture;
+    }
+    return "https://cdn.discourse.org/ionicframework/letter_avatar/" + personModel.first_name +
+      "/40/5_fcf819f9b3791cb8c87edf29c8984f83.png";
+  }
 
 });

@@ -1,17 +1,17 @@
 <ion-view view-title="" hide-back-button="true">
   <ion-header-bar class="bar-stable bar-subheader item-input-inset">
-      <label class="item-input-wrapper">
-          <i class="icon ion-search placeholder-icon"></i>
-          <input type="text" ng-model="searchTerm" ng-change="peopleList.search(searchTerm)" placeholder="Search">
-      </label>
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" ng-model="searchTerm" ng-change="peopleList.search(searchTerm)" placeholder="Search">
+    </label>
   </ion-header-bar>
     <ion-content>
     <ion-refresher on-refresh="peopleList.firstPage()"></ion-refresher>
     <ion-list>
       <ion-item class="item-avatar" collection-repeat="person in peopleList.people" href="#/app/person/{{person.id}}">
-          <img ng-src="{{person.picture}}">
-          <h2>{{person.first_name}} {{person.last_name}}</h2>
-          <p>{{person.gender}}</p>
+        <img ng-src="{{peopleList.picture(person)}}">
+        <h2>{{person.first_name}} {{person.last_name}}</h2>
+        <p>{{person.gender}}</p>
       </ion-item>
     </ion-list>
     <ion-infinite-scroll on-infinite="peopleList.nextPage()" distance="25%" ng-if="peopleList.hasMorePages"></ion-infinite-scroll>
