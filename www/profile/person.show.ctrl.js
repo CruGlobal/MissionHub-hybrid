@@ -4,7 +4,7 @@ angular.module('missionhub')
 
     that.person = {};
 
-    api.people.get({id: $stateParams.contactId}).then(function(data) {
+    api.people.get({id: $stateParams.contactId, include: 'interactions'}).then(function(data) {
       that.person = data.person;
     }, function(error) {
 
