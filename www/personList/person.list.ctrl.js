@@ -1,5 +1,5 @@
 angular.module('missionhub')
-.controller('PersonListCtrl', function($scope, api) {
+.controller('PersonListCtrl', function($scope, api, Person) {
   var that = this;
 
   that.people = [];
@@ -12,8 +12,8 @@ angular.module('missionhub')
       offset: that.offset
     };
 
-    if ($scope.searchTerm !== '') {
-      filters['filters[name_or_email_like]'] = $scope.searchTerm;
+    if (that.searchTerm !== '') {
+      filters['filters[name_or_email_like]'] = that.searchTerm;
     }
 
     return filters;
@@ -45,7 +45,7 @@ angular.module('missionhub')
     });
   };
 
-  that.search = function(searchTerm) {
+  that.search = function() {
     that.offset = 0;
     that.refresh(that.filters(), true);
   };
