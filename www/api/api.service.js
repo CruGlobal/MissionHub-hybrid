@@ -56,4 +56,25 @@ angular.module('missionhub')
     return {
       token: token
     };
+  })
+
+  .factory('Person', function(){
+
+    var that = this;
+    that.person = {};
+
+    that.setData = function(data) {
+      that.person = data;
+      return that;
+    };
+
+    that.avatar = function() {
+      that.person.picture;
+    };
+
+    return {
+      setData: that.setData,
+      avatar: that.avatar
+    };
+
   });
