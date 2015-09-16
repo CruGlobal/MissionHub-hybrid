@@ -1,17 +1,20 @@
 <ion-view view-title="" hide-back-button="true">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-funnel" ng-click="app.openFilters()"></button>
+  </ion-nav-buttons>
   <ion-header-bar class="bar-stable bar-subheader item-input-inset">
-      <label class="item-input-wrapper">
-          <i class="icon ion-search placeholder-icon"></i>
-          <input type="text" ng-model="peopleList.searchTerm" ng-change="peopleList.search()" placeholder="Search">
-      </label>
+    <label class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="peopleList.searchTerm" ng-change="peopleList.search()" placeholder="Search">
+    </label>
   </ion-header-bar>
     <ion-content>
     <ion-refresher on-refresh="peopleList.firstPage()"></ion-refresher>
     <ion-list>
       <ion-item class="item-avatar" collection-repeat="person in peopleList.people" href="#/app/person/{{person.id}}">
-          <img ng-src="{{person.picture}}">
-          <h2>{{person.first_name}} {{person.last_name}}</h2>
-          <p>{{person.gender}}</p>
+        <div class="item-image" ng-style="{'background-image':peopleList.pictureStyle(person)}"></div>
+        <h2>{{person.first_name}} {{person.last_name}}</h2>
+        <p>{{person.gender}}</p>
       </ion-item>
     </ion-list>
     <ion-infinite-scroll on-infinite="peopleList.nextPage()" distance="25%" ng-if="peopleList.hasMorePages"></ion-infinite-scroll>

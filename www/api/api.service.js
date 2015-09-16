@@ -40,8 +40,13 @@ angular.module('missionhub')
     var tokenStorageKey = 'facebook_token';
 
     function token(value) {
-      if(value) {
-        localStorage.setItem(tokenStorageKey, value);
+      if(value !== undefined) {
+        if(value) {
+          localStorage.setItem(tokenStorageKey, value);
+        }
+        else {
+          localStorage.removeItem(tokenStorageKey);
+        }
       }
       else {
         return localStorage.getItem(tokenStorageKey);

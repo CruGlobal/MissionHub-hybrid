@@ -18,9 +18,9 @@ angular.module('missionhub')
       backdropClickToClose: false,
       hardwareBackButtonClose: false
     }).then(function(modal) {
-      $scope.loginModal = modal;
+      that.loginModal = modal;
       if(!loginDetails.token()) {
-        $scope.loginModal.show();
+        that.loginModal.show();
       }
     });
     $ionicModal.fromTemplateUrl('personList/filters.html', {
@@ -29,16 +29,16 @@ angular.module('missionhub')
       that.filtersModal = modal;
     });
 
-    $scope.closeLogin = function() {
-      $scope.loginModal.hide();
+    that.closeLogin = function() {
+      that.loginModal.hide();
     };
 
     $scope.login = function() {
-      $scope.loginModal.show();
+      that.loginModal.show();
     };
 
-    this.openFilters = function() {
-      this.filtersModal.show();
+    that.openFilters = function() {
+      that.filtersModal.show();
     }
     $scope.closeFilters = function() {
       that.filtersModal.hide();
@@ -54,11 +54,26 @@ angular.module('missionhub')
       if(window.facebookConnectPlugin) {
         facebookConnectPlugin.login(["public_profile"],
           function(userData) {
-            console.log(userData);
-            localStorage.setItem('fb-login-info', JSON.stringify(userData))
+            if(userData && userData.authResponse && userData.authResponse.accessToken) {
+              loginDetails.token(userData.authResponse.accessToken);
+              that.closeLogin();
+            }
           },
           function(message) {
             alert('Could not login: '+message)
+          });
+      }
+    };
+
+    $scope.facebookLogout = function() {
+      if(window.facebookConnectPlugin) {
+        facebookConnectPlugin.logout(
+          function() {
+            loginDetails.token('');
+            that.login();
+          },
+          function(message) {
+            alert('Could not logout: '+message)
           });
       }
     };
