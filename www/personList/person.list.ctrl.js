@@ -1,5 +1,5 @@
 angular.module('missionhub')
-.controller('PersonListCtrl', function($scope, api, Person) {
+.controller('PersonListCtrl', function($scope, api) {
   var that = this;
 
   that.people = [];
@@ -56,7 +56,7 @@ angular.module('missionhub')
       return 'url(' + that.picture(personModel) + ')'
     }
   }
-  
+
   that.picture = function(personModel) {
     if(!personModel) {
       return '';
