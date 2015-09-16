@@ -3,8 +3,8 @@ angular.module('missionhub')
   var that = this;
 
 //TODO: find a way to get the current person in the collection-repeat
-  $scope.Person = function() {
-    return Person.setData($scope.currentPerson);
+  $scope.Person = function(person) {
+    return Person.setData(person);
   }
 
   that.people = [];
@@ -61,7 +61,7 @@ angular.module('missionhub')
       return 'url(' + that.picture(personModel) + ')'
     }
   }
-  
+
   that.picture = function(personModel) {
     if(!personModel) {
       return '';

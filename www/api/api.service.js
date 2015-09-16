@@ -69,12 +69,26 @@ angular.module('missionhub')
     };
 
     that.avatar = function() {
-      that.person.picture;
+      if(!that.person) {
+        return '';
+      }
+      if(that.person.picture) {
+        return that.person.picture;
+      }
+      return "https://cdn.discourse.org/ionicframework/letter_avatar/" + that.person.first_name +
+        "/40/5_fcf819f9b3791cb8c87edf29c8984f83.png";
     };
+
+    that.avatarStyle = function() {
+      if(that.person) {
+        return 'url(' + that.avatar() + ')'
+      }
+    }
 
     return {
       setData: that.setData,
-      avatar: that.avatar
+      avatar: that.avatar,
+      avatarStyle: that.avatar
     };
 
   });
