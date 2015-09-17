@@ -1,17 +1,20 @@
 <ion-view>
-  <ion-content>
-      <div id="profile-bg"></div>
-      <div id="content">
-          <div id="profile-info">
-              <img id="profile-image" ng-src="{{profile.person | personAvatar : 200}}">
-              <h3 id="profile-name">{{profile.person.first_name}} {{profile.person.last_name}}</h3>
-              <label>Labels:</label>
-              <div class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</div>
-                  <div class="button-bar skinny-button-bar">
-                      <a class="button skinny-button">Info</a>
-                      <a class="button skinny-button">Interactions</a>
-                      <a class="button skinny-button">Surveys</a>
-                  </div>
-       </div>
+  <ion-content class="person-profile">
+    <div class="profile-bg"></div>
+    <div class="profile-header">
+      <div class="profile-info">
+        <div class="profile-image">
+          <img ng-src="{{profile.person | personAvatar : 200}}">
+        </div>
+        <h3 class="profile-name">{{profile.person.first_name}} {{profile.person.last_name}}</h3>
+        <label>Labels:</label>
+        <div class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</div>
+        <div class="button-bar skinny-button-bar">
+          <a class="button skinny-button">Info</a>
+          <a class="button skinny-button">Interactions</a>
+          <a class="button skinny-button">Surveys</a>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

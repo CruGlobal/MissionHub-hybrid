@@ -9,7 +9,7 @@
         <input type="text" ng-model="peopleList.searchTerm" ng-change="peopleList.search()" placeholder="Search">
     </label>
   </ion-header-bar>
-    <ion-content>
+  <ion-content>
     <ion-refresher on-refresh="peopleList.firstPage()"></ion-refresher>
     <ion-list>
       <ion-item class="item-avatar" collection-repeat="person in peopleList.people" href="#/app/person/{{person.id}}">
