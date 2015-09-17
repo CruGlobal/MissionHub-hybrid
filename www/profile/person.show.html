@@ -1,11 +1,12 @@
-<ion-view view-title="{{profile.person.first_name}} {{profile.person.last_name}}">
+<ion-view>
   <ion-content>
       <div id="profile-bg"></div>
       <div id="content">
           <div id="profile-info">
               <img id="profile-image" ng-src="{{profile.person | personAvatar : 200}}">
-              <h3 id="profile-name">{{person.first_name}} {{person.last_name}}</h3>
-          <span id="profile-description">{{profile.person.interactions}}</span>
+              <h3 id="profile-name">{{profile.person.first_name}} {{profile.person.last_name}}</h3>
+              <label>Labels:</label>
+              <div class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</div>
        </div>
   </ion-content>
 </ion-view>

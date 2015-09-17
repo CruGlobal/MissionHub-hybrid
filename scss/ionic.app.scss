@@ -37,7 +37,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 #content {
   position: relative;
-  margin-top: 150px;
+  margin-top: 75px;
   background-color: white;
   box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
   padding-top: 200px;
@@ -52,7 +52,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 #profile-name {
   color: #444;
-  font-size: 26px;
+  font-size: 22px;
+  margin-top: 10px;
 }
 #profile-description {
   font-size: 15px;
@@ -77,4 +78,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   font-size: 12px;
   padding-left: 6px;
   padding-right: 6px;
+}
+
+.label {
+  padding: 5px;
+  margin: 0 10px;
+  width: 80px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background: #f7f7f7;
+  text-align: center;
 }
