@@ -2,10 +2,7 @@ angular.module('missionhub')
 .controller('PersonListCtrl', function($scope, api, Person) {
   var that = this;
 
-//TODO: find a way to get the current person in the collection-repeat
-  $scope.Person = function(person) {
-    return Person.setData(person);
-  }
+  $scope.Person = Person.setData;
 
   that.people = [];
   that.offset = -20;
