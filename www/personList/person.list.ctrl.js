@@ -51,21 +51,4 @@ angular.module('missionhub')
     that.refresh(that.filters(), true);
   };
 
-  that.pictureStyle = function(personModel) {
-    if(personModel) {
-      return 'url(' + that.picture(personModel) + ')'
-    }
-  }
-  
-  that.picture = function(personModel) {
-    if(!personModel) {
-      return '';
-    }
-    if(personModel.picture) {
-      return personModel.picture;
-    }
-    return "https://cdn.discourse.org/ionicframework/letter_avatar/" + personModel.first_name +
-      "/40/5_fcf819f9b3791cb8c87edf29c8984f83.png";
-  }
-
 });
