@@ -89,3 +89,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   background: #f7f7f7;
   text-align: center;
 }
+
+.skinny-button-bar {
+  padding: 5px 0;
+  margin: 10px 0;
+}
+
+.button-bar .skinny-button {
+  min-height: 32px;
+  line-height: 32px;
+}
