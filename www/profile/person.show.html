@@ -1,9 +1,11 @@
 <ion-view view-title="{{profile.person.first_name}} {{profile.person.last_name}}">
   <ion-content>
-      <div class="item-avatar">
-          <div class="item-image" ng-src="{{profile.person.picture}}"></div>
-          <h2>{{profile.person.first_name}} {{profile.person.last_name}}</h2>
-          <p>{{profile.person.gender}}</p>
-      </div>
+      <div id="profile-bg"></div>
+      <div id="content">
+          <div id="profile-info">
+              <img id="profile-image" ng-src="{{profile.person.picture}}">
+              <h3 id="profile-name">{{person.first_name}} {{person.last_name}}</h3>
+          <span id="profile-description">{{profile.person.interactions}}</span>
+       </div>
   </ion-content>
 </ion-view>
