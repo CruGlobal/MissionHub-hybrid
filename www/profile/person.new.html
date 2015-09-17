@@ -1,0 +1,42 @@
+<ion-view view-title="New Person">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="newPerson.save()">Save</button>
+  </ion-nav-buttons>
+  <ion-content class="">
+    <form>
+      <div class="list">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">First Name</span>
+          <input type="text" placeholder="First Name">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Last Name</span>
+          <input type="text" placeholder="Last Name">
+        </label>
+        <div class="item">
+          <span class="input-label">Gender</span>
+          <ti-segmented-control style="width: 200px;">
+            <ti-segmented-control-button class="button-positive" title="'Male'"></ti-segmented-control-button>
+            <ti-segmented-control-button class="button-positive" title="'Female'"></ti-segmented-control-button>
+          </ti-segmented-control>
+        </div>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="Email">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Phone</span>
+          <input type="tel" placeholder="Phone">
+        </label>
+        <div class="item">
+          <span class="input-label">Permission Level</span>
+          <ti-segmented-control style="" class="permission-picker">
+            <ti-segmented-control-button class="button-positive" title="'Admin'"></ti-segmented-control-button>
+            <ti-segmented-control-button class="button-positive" title="'User'"></ti-segmented-control-button>
+            <ti-segmented-control-button class="button-positive" title="'No Permission'"></ti-segmented-control-button>
+          </ti-segmented-control>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

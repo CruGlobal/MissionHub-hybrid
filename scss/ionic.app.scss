@@ -72,3 +72,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   margin: 30px auto 0;
   box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
 }
+
+.permission-picker .button.button-outline.ti-segmented-control {
+  font-size: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
+}

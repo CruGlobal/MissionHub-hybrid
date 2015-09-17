@@ -1,5 +1,5 @@
 
-angular.module('missionhub', ['ionic', 'ngResource'])
+angular.module('missionhub', ['ionic', 'ngResource', 'ti-segmented-control'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -35,14 +35,24 @@ angular.module('missionhub', ['ionic', 'ngResource'])
     }
   })
 
-  .state('app.personShow', {
-    url: '/person/:contactId',
-    views: {
-      'menuContent': {
-        templateUrl: 'profile/person.show.html',
-        controller: 'PersonShowCtrl as profile'
+    .state('app.personNew', {
+      url: '/person/new',
+      views: {
+        'menuContent': {
+          templateUrl: 'profile/person.new.html',
+          //controller: 'PersonShowCtrl as profile'
+        }
       }
-    }
-  });
+    })
+
+    .state('app.personShow', {
+      url: '/person/:contactId',
+      views: {
+        'menuContent': {
+          templateUrl: 'profile/person.show.html',
+          controller: 'PersonShowCtrl as profile'
+        }
+      }
+    });
   $urlRouterProvider.otherwise('/app/index');
 });
