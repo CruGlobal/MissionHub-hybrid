@@ -10,11 +10,22 @@
         <label>Labels:</label>
         <div class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</div>
         <div class="button-bar skinny-button-bar">
-          <a class="button skinny-button">Info</a>
-          <a class="button skinny-button">Interactions</a>
-          <a class="button skinny-button">Surveys</a>
+          <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(0)}" ng-click="profile.setTab(0)">Info</a>
+          <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(1)}" ng-click="profile.setTab(1)">Interactions</a>
+          <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(2)}" ng-click="profile.setTab(2)">Surveys</a>
         </div>
+
       </div>
     </div>
+
+    <!-- Info -->
+    <div ng-show="profile.isCurrentTab(0)">Info</div>
+
+    <!-- Interactions -->
+    <div ng-show="profile.isCurrentTab(1)">Interactions</div>
+
+    <!-- Surveys -->
+    <div ng-show="profile.isCurrentTab(2)">Surveys</div>
+
   </ion-content>
 </ion-view>
