@@ -45,6 +45,16 @@ angular.module('missionhub', ['ionic', 'ngResource', 'ti-segmented-control'])
       }
     })
 
+    .state('app.personEdit', {
+      url: '/person/:contactId/edit',
+      views: {
+        'menuContent': {
+          templateUrl: 'profile/person.new.html',
+          //controller: 'PersonShowCtrl as profile'
+        }
+      }
+    })
+
     .state('app.personShow', {
       url: '/person/:contactId',
       views: {
