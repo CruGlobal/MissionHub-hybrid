@@ -58,14 +58,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   padding-right: 6px;
 }
 
+.labels {
+  padding: 0 4px;
+  text-align: left;
+}
 .label {
   padding: 5px;
-  margin: 0 10px;
-  width: 80px;
+  margin: 4px 6px;
+  min-width: 80px;
   border: 1px solid #ddd;
   border-radius: 2px;
   background: #f7f7f7;
   text-align: center;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .skinny-button-bar {

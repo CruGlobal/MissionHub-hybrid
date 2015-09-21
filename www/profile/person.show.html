@@ -14,8 +14,10 @@
           <img ng-src="{{profile.person | personAvatar : 200}}">
         </div>
         <h3 class="profile-name">{{profile.person.first_name}} {{profile.person.last_name}}</h3>
-        <label>Labels:</label>
-        <div class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</div>
+        <div>Labels:</div>
+        <div class="labels">
+          <span class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</span>
+        </div>
         <div class="button-bar skinny-button-bar">
           <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(0)}" ng-click="profile.setTab(0)">Info</a>
           <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(1)}" ng-click="profile.setTab(1)">Interactions</a>
