@@ -7,7 +7,7 @@ angular.module('missionhub')
     that.currentTab = 0;
 
     api.people.get({id: $stateParams.contactId, include: that.includes.join()}).then(function(data) {
-      that.person = data.person;
+      angular.extend(that.person, data.person);
     }, function(error) {
 
     });
