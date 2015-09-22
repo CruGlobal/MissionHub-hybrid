@@ -1,1 +1,18 @@
-<div>{{interactions.person.first_name}} {{interactions.person.last_name}}!</div>
+<div class="list card" ng-repeat="interaction in interactionsList.person.interactions">
+
+  <div class="item item-avatar">
+    <img ng-src="{{interactionsList.person | personAvatar}}">
+    <h2>{{interaction.type.name}}</h2>
+    <p>{{interaction.timestamp | date: 'dd MMM yyyy'}}</p>
+  </div>
+
+  <div class="item item-body">
+    <p>
+      {{interaction.comment}}
+    </p>
+    <p>
+      <a href="#" class="subdued">Last updated by {{interaction.updated_by.first_name}} {{interaction.updated_by.last_name}} on {{interaction.updated_at | date: 'dd MMM yyyy'}}</a>
+    </p>
+  </div>
+
+</div>

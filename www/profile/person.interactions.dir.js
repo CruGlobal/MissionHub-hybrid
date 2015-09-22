@@ -3,7 +3,7 @@ angular.module('missionhub')
     return {
       restrict: 'E',
       templateUrl: 'profile/person.interactions.html',
-      controller: 'PersonInteractionsCtrl as interactions',
+      controller: 'PersonInteractionsCtrl as interactionsList',
       scope: {
         person: '='
       }

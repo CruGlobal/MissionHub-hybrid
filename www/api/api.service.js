@@ -1,5 +1,6 @@
 angular.module('missionhub')
-  .factory('api', function($resource, $q, loginDetails, personCache) {
+  .constant('config', {baseUrl: 'https://stage.missionhub.com/apis/v3/'})
+  .factory('api', function($resource, $q, loginDetails, config, personCache) {
     // put const here
     var that = this;
 
@@ -7,20 +8,23 @@ angular.module('missionhub')
       return loginDetails.token();
     };
 
+    function mhResource(endpoint, options) {
+      if(!loginDetails.token()) {
+        var deferred = $q.defer();
+        deferred.resolve({endpoint: []})
+        return deferred.promise;
+      } else {
+        return $resource(config.baseUrl + endpoint +'/:id', {id:'@id', facebook_token: facebook_token()}).get(options).$promise;
+      }
+    }
+
     //define methods
     function getMe() {
       return getPeople({id:'me'});
     }
 
-    function getPeople(config) {
-      if(!loginDetails.token()) {
-        var deferred = $q.defer();
-        deferred.resolve({people: []})
-        return deferred.promise;
-      }
-      var People = $resource('https://stage.missionhub.com/apis/v3/people/:id', {id:'@id', facebook_token: facebook_token()});
-
-      var promise = People.get(config).$promise;
+    function getPeople(options) {
+      var promise = mhResource('people', options);
       promise.then(function(data) {
         // save to cache now
         angular.forEach(data.people, function(person) {
@@ -30,11 +34,18 @@ angular.module('missionhub')
       return promise;
     }
 
+    function getInteractions(options) {
+      return mhResource('interactions', options);
+    }
+
     // return interface
     return {
       getMe: getMe,
       people: {
         get: getPeople
+      },
+      interactions: {
+        get: getInteractions
       }
     }
   })
