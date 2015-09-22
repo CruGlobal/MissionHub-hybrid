@@ -34,7 +34,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 .profile-header {
   margin-top: 75px;
-  background-color: white;
+  background-color: black;
   box-shadow: 0px -1px 10px rgba(0,0,0,0.4);
 }
 .profile-image {
@@ -82,4 +82,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .button-bar .skinny-button {
   min-height: 32px;
   line-height: 32px;
+}
+
+.person-address {
+  text-decoration: none;
+  color: rgb(68,68,68);
 }

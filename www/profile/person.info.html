@@ -1,1 +1,12 @@
-<div>{{info.person.gender}}</div>
+<ion-content>
+  <ion-list>
+    <ion-item class="item-divider">Gender</ion-item>
+    <ion-item >{{info.person.gender}}</ion-item>
+    <ion-item class="item-divider">Phone Numbers</ion-item>
+    <ion-item ng-repeat="phoneNumber in info.person.phone_numbers" ng-href="tel://{{phoneNumber.number}}">{{phoneNumber.number | tel}} <span ng-show="{{phoneNumber.location}}" class="badge badge-positive">{{phoneNumber.location}}</span> <span ng-show="{{phoneNumber.primary}}" class="badge badge-positive">Primary</span></ion-item>
+    <ion-item class="item-divider">Email Addresses</ion-item>
+    <ion-item ng-repeat="emailAddress in info.person.email_addresses" ng-href="mailto://{{emailAddress.email}}">{{emailAddress.email}} <span ng-show="{{emailAddress.primary}}"  class="badge badge-positive">Primary</span></ion-item>
+    <ion-item class="item-divider">Addresses</ion-item>
+    <ion-item ng-repeat="address in info.person.addresses"><person-address address="address"></person-address></a></ion-item>
+  </ion-list>
+</ion-content>
