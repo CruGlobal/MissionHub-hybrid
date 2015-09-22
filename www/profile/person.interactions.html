@@ -1,8 +1,8 @@
-<div class="list card" ng-repeat="interaction in interactionsList.person.interactions">
+<div class="list card" ng-repeat="interaction in interactionsList.interactions">
 
   <div class="item item-avatar">
-    <img ng-src="{{interactionsList.person | personAvatar}}">
-    <h2>{{interaction.type.name}}</h2>
+    <img ng-src="{{interaction | interactionPrimaryInitiator | personAvatar}}">
+    <h2>{{interaction.interaction_type.name}}</h2>
     <p>{{interaction.timestamp | date: 'dd MMM yyyy'}}</p>
   </div>
 
@@ -11,8 +11,10 @@
       {{interaction.comment}}
     </p>
     <p>
-      <a href="#" class="subdued">Last updated by {{interaction.updated_by.first_name}} {{interaction.updated_by.last_name}} on {{interaction.updated_at | date: 'dd MMM yyyy'}}</a>
+      <a href="#" class="subdued">Last updated by {{interaction.last_updater | personFullname}} on {{interaction.updated_at | date: 'dd MMM yyyy'}}</a>
     </p>
   </div>
 
 </div>
+<ion-spinner ng-show="interactionList.isLoading()" icon="spiral"></ion-spinner>
+<ion-item ng-show="!interactionList.hasInteractions()">{{interactionsList.person | personFullname}} doesn't have any interactions.</ion-item>

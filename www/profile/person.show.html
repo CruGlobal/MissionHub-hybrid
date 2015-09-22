@@ -13,7 +13,7 @@
           <div class="profile-image">
             <img ng-src="{{profile.person | personAvatar : 200}}">
           </div>
-          <h3 class="profile-name">{{profile.person.first_name}} {{profile.person.last_name}}</h3>
+          <h3 class="profile-name">{{profile.person | personFullname}}</h3>
           <div>Labels:</div>
           <div class="labels">
             <span class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</span>

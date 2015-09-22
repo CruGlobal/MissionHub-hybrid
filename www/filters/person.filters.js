@@ -28,4 +28,12 @@ angular.module('missionhub')
       }
       return person.phone_numbers[0].number;
     };
+  })
+  .filter('personFullname', function(){
+    return function(person) {
+      if (!person || !person.first_name) {
+        return '';
+      }
+      return person.first_name + ' ' + person.last_name;
+    };
   });
