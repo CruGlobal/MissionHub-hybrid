@@ -1,5 +1,5 @@
 angular.module('missionhub')
-  .factory('api', function($resource, $q, loginDetails) {
+  .factory('api', function($resource, $q, loginDetails, personCache) {
     // put const here
     var that = this;
 
@@ -19,12 +19,15 @@ angular.module('missionhub')
         return deferred.promise;
       }
       var People = $resource('https://stage.missionhub.com/apis/v3/people/:id', {id:'@id', facebook_token: facebook_token()});
-      if (config.id) {
-        return People.get(config).$promise;
-      }
-      else {
-        return People.get(config).$promise;
-      }
+
+      var promise = People.get(config).$promise;
+      promise.then(function(data) {
+        // save to cache now
+        angular.forEach(data.people, function(person) {
+          personCache.person(person)
+        });
+      });
+      return promise;
     }
 
     // return interface
