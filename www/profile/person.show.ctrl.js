@@ -4,7 +4,7 @@ angular.module('missionhub')
 
     that.includes = ['organizational_permission' ,'permission', 'organizational_labels', 'label', 'interactions', 'email_addresses', 'phone_numbers', 'addresses'];
     that.person = {};
-    that.currentTab = 0;
+    that.currentTab = 1;
 
     api.people.get({id: $stateParams.contactId, include: that.includes.join()}).then(function(data) {
       angular.extend(that.person, data.person);

@@ -31,7 +31,7 @@
       <person-info ng-show="profile.isCurrentTab(0)" person="profile.person"></person-info>
 
       <!-- Interactions -->
-      <div ng-show="profile.isCurrentTab(1)">Interactions</div>
+      <person-interactions ng-show="profile.isCurrentTab(1)" person="profile.person"></person-interactions>
 
       <!-- Surveys -->
       <div ng-show="profile.isCurrentTab(2)">Surveys</div>
