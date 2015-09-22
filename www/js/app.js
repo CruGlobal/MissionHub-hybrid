@@ -16,7 +16,7 @@ angular.module('missionhub', ['ionic', 'ngResource', 'ti-segmented-control'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
   $stateProvider
   .state('app', {
     url: '/app',
@@ -65,4 +65,6 @@ angular.module('missionhub', ['ionic', 'ngResource', 'ti-segmented-control'])
       }
     });
   $urlRouterProvider.otherwise('/app/index');
+
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|sms)?:?/);
 });
