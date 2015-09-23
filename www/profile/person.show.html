@@ -9,22 +9,19 @@
   <ion-content class="person-profile">
     <div class="profile-body">
       <div class="profile-header">
-        <div class="profile-info">
-          <div class="profile-image">
-            <img ng-src="{{profile.person | personAvatar : 200}}">
-          </div>
-          <h3 class="profile-name">{{profile.person | personFullname}}</h3>
-          <div>Labels:</div>
-          <div class="labels">
-            <span class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</span>
-          </div>
-          <div class="button-bar skinny-button-bar">
-            <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(0)}" ng-click="profile.setTab(0)">Info</a>
-            <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(1)}" ng-click="profile.setTab(1)">Interactions</a>
-            <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(2)}" ng-click="profile.setTab(2)">Surveys</a>
-          </div>
-
+        <div class="profile-image">
+          <img ng-src="{{profile.person | personAvatar : 96}}">
         </div>
+        <h3 class="profile-name">{{profile.person | personFullname}}</h3>
+        <div>Labels:</div>
+        <div class="labels">
+          <span class="label" ng-repeat="organization_label in profile.person.organizational_labels">{{organization_label.label.name}}</span>
+        </div>
+      </div>
+      <div class="button-bar skinny-button-bar">
+        <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(0)}" ng-click="profile.setTab(0)">Info</a>
+        <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(1)}" ng-click="profile.setTab(1)">Interactions</a>
+        <a class="button skinny-button" ng-class="{'active' : profile.isCurrentTab(2)}" ng-click="profile.setTab(2)">Surveys</a>
       </div>
 
       <!-- Info -->
