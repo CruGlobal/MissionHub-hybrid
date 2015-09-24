@@ -1,7 +1,6 @@
 angular.module('missionhub')
   .filter('personAvatar', function() {
     return function (person, size) {
-
       size = size || 40;
 
       if (!person || !person.first_name) {
@@ -10,8 +9,16 @@ angular.module('missionhub')
       if (person.picture) {
         return person.picture + '?width=' + size + '&height=' + size;
       }
-      return "https://cdn.discourse.org/ionicframework/letter_avatar/" + person.first_name +
-        "/" + size + "/5_fcf819f9b3791cb8c87edf29c8984f83.png";
+
+      // from http://stackoverflow.com/a/16348977/879524
+      var colour = '444444';
+      // str to hash
+      for (var i = 0, hash = 0; i < person.first_name.length; hash = person.first_name.charCodeAt(i++) + ((hash << 5) - hash));
+      // int/hash to hex
+      for (var i = 0, colour = ""; i < 3; colour += ("00" + ((hash >> i++ * 8) & 0xFF).toString(16)).slice(-2));
+
+      return "https://avatars.discourse.org/letter/" + person.first_name.slice(0,1) + "/" + colour +
+        "/" + size + ".png";
     };
   })
   .filter('personPrimaryPhone', function() {
