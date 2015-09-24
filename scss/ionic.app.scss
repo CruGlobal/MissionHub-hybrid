@@ -22,8 +22,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 .profile-body {
-  min-height: 430px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .profile-name {
   color: #444;
@@ -32,7 +31,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 .person-profile {
   background: url('../img/bg.png') no-repeat transparent;
-  background-size: 100% 60%;
+  background-size: 100% 100%;
 }
 $profile-image-size: 96px;
 .profile-header {
@@ -98,4 +97,12 @@ $profile-image-size: 96px;
 .person-address {
   text-decoration: none;
   color: rgb(68,68,68);
+}
+
+.person-interactions {
+  padding-bottom: 1em;
+  .loading {
+    text-align: center;
+    padding: 2em;
+  }
 }

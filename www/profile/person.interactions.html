@@ -11,10 +11,17 @@
       {{interaction.comment}}
     </p>
     <p>
-      <a href="#" class="subdued">Last updated by {{interaction.last_updater | personFullname}} on {{interaction.updated_at | date: 'dd MMM yyyy'}}</a>
+      <a href="#" class="subdued">
+        Last updated by {{interaction.last_updater | personFullname}} on {{interaction.updated_at | date: 'dd MMM yyyy'}}
+      </a>
     </p>
   </div>
 
 </div>
-<ion-spinner ng-show="interactionList.isLoading()" icon="spiral"></ion-spinner>
-<ion-item ng-show="!interactionList.hasInteractions()">{{interactionsList.person | personFullname}} doesn't have any interactions.</ion-item>
+
+<div ng-show="interactionsList.loading" class="loading">
+  <ion-spinner icon="spiral"></ion-spinner>
+</div>
+<div class="card padding" ng-show="!interactionsList.loading && interactionsList.interactions.length == 0">
+  {{interactionsList.person | personFullname}} doesn't have any interactions. Click here to add one.
+</div>

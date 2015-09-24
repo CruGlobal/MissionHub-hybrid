@@ -26,8 +26,4 @@ angular.module('missionhub')
       return that.interactions.length > 0;
     };
 
-    that.isLoading = function() {
-      return that.loading;
-    };
-
   });
