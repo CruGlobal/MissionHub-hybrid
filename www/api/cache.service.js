@@ -20,4 +20,24 @@ angular.module('missionhub')
     return {
       person: person
     }
+  })
+  .factory('organizationListCache', function() {
+    var cachedOrganizationList = [];
+
+    function list(newList) {
+      if (newList && newList.length) {
+        // don't override cache if list is empty
+        if(newList.length == 0) {
+          return cachedOrganizationList.length == 0;
+        }
+        cachedOrganizationList = [];
+        angular.extend(cachedOrganizationList, newList);
+        return true;
+      }
+      return angular.extend([], cachedOrganizationList);
+    }
+
+    return {
+      list: list
+    }
   });

@@ -2,16 +2,16 @@ angular.module('missionhub')
   .constant('config', {baseUrl: 'https://stage.missionhub.com/apis/v3/'})
   .factory('api', function($resource, $q, loginDetails, config, personCache) {
     // put const here
-    var that = this;
+    //var that = this;
 
     function facebook_token() {
       return loginDetails.token();
-    };
+    }
 
     function mhResource(endpoint, options) {
       if(!loginDetails.token()) {
         var deferred = $q.defer();
-        deferred.resolve({endpoint: []})
+        deferred.resolve({endpoint: []});
         return deferred.promise;
       } else {
         return $resource(config.baseUrl + endpoint +'/:id', {id:'@id', facebook_token: facebook_token()}).get(options).$promise;
@@ -38,6 +38,10 @@ angular.module('missionhub')
       return mhResource('interactions', options);
     }
 
+    function getOrganizations(options) {
+      return mhResource('organizations', options);
+    }
+
     // return interface
     return {
       getMe: getMe,
@@ -46,6 +50,9 @@ angular.module('missionhub')
       },
       interactions: {
         get: getInteractions
+      },
+      organizations: {
+        get: getOrganizations
       }
     }
   })

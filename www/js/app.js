@@ -21,7 +21,7 @@ angular.module('missionhub', ['ionic', 'ngResource', 'ti-segmented-control'])
   .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'personList/menu.html',
+    templateUrl: 'menu-slide/menu.html',
     controller: 'AppCtrl as app'
   })
 

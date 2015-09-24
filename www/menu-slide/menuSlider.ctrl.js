@@ -1,5 +1,4 @@
 angular.module('missionhub')
-
   .controller('AppCtrl', function($scope, $ionicModal, $timeout, loginDetails) {
 
     // With the new view caching in Ionic, Controllers are only called
@@ -12,7 +11,7 @@ angular.module('missionhub')
     var that = this;
     this.loginData = {};
 
-    // Create the login modal that we will use later
+    // init the modals
     $ionicModal.fromTemplateUrl('personList/login.html', {
       scope: $scope,
       backdropClickToClose: false,
@@ -28,6 +27,11 @@ angular.module('missionhub')
     }).then(function(modal) {
       that.filtersModal = modal;
     });
+    $ionicModal.fromTemplateUrl('menu-slide/organizationPicker.html', {
+      scope: $scope
+    }).then(function(modal) {
+      that.orgPickerModal = modal;
+    });
 
     that.closeLogin = function() {
       that.loginModal.hide();
@@ -39,9 +43,12 @@ angular.module('missionhub')
 
     that.openFilters = function() {
       that.filtersModal.show();
-    }
+    };
     $scope.closeFilters = function() {
       that.filtersModal.hide();
+    };
+    $scope.closeOrgPicker = function() {
+      that.orgPickerModal.hide();
     };
 
     if(window.facebookConnectPlugin && facebookConnectPlugin.getLoginStatus) {
@@ -65,7 +72,7 @@ angular.module('missionhub')
       }
     };
 
-    $scope.facebookLogout = function() {
+    that.facebookLogout = function() {
       if(window.facebookConnectPlugin) {
         facebookConnectPlugin.logout(
           function() {

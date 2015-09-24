@@ -13,20 +13,30 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">MissionHub</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/filters">
-          Filters
+        <ion-item menu-close href="#/app/index">
+          All Contacts
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
+        <ion-item menu-close href="#/app/index?filters.assigned_to=me">
+          My Contacts
         </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
+        <ion-item menu-close href="#/surveys">
+          Surverys
         </ion-item>
-        <ion-item menu-close ng-click="facebookLogout()">
+        <div class="item item-divider">Settings</div>
+        <ion-item menu-close ng-click="app.orgPickerModal.show()">
+          Change Organization
+        </ion-item>
+        <ion-item menu-close href="#/about">
+          About
+        </ion-item>
+        <ion-item menu-close href="#/help">
+          Help
+        </ion-item>
+        <ion-item menu-close ng-click="app.facebookLogout()">
           Logout
         </ion-item>
       </ion-list>
