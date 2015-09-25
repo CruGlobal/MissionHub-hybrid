@@ -7,18 +7,12 @@ angular.module('missionhub')
     // get from cache
     that.orgList = organizationListCache.list();
 
-    // get remote
-    that.refresh = function() {
-      that.orgList = []
-      return api.organizations.get().then(function(data) {
-        that.orgList = data.organizations;
-      }, function(error) {
-        // show error
-      });
-    };
-    that.refresh();
+    $scope.$on('current-org-updated', function(event, org) {
+      that.orgList = organizationListCache.list();
+    });
 
-    that.selectOrg = function() {
+    that.selectOrg = function(org) {
       // dispatch event
+      api.setCurrentOrg(org);
     };
   });
