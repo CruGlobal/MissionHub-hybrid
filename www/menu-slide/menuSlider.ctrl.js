@@ -1,5 +1,5 @@
 angular.module('missionhub')
-  .controller('AppCtrl', function($scope, $ionicModal, $timeout, loginDetails) {
+  .controller('AppCtrl', function($scope, $ionicModal, $timeout, loginDetails, api) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -11,6 +11,17 @@ angular.module('missionhub')
     var that = this;
     this.loginData = {};
 
+    $scope.$on('current-org-updated', function(event, org) {
+      if (that.orgPickerModal.isShown()) {
+        $scope.closeOrgPicker();
+      }
+      that.updateMenu(org);
+    });
+
+    that.updateMenu = function(org) {
+      //TODO: update menu with labels, surveys, users, admins, etc
+    };
+
     // init the modals
     $ionicModal.fromTemplateUrl('personList/login.html', {
       scope: $scope,
@@ -18,7 +29,9 @@ angular.module('missionhub')
       hardwareBackButtonClose: false
     }).then(function(modal) {
       that.loginModal = modal;
-      if(!loginDetails.token()) {
+      if (loginDetails.token()) {
+        api.getMe();
+      } else {
         that.loginModal.show();
       }
     });
@@ -63,6 +76,7 @@ angular.module('missionhub')
           function(userData) {
             if(userData && userData.authResponse && userData.authResponse.accessToken) {
               loginDetails.token(userData.authResponse.accessToken);
+              api.getMe();
               that.closeLogin();
             }
           },
