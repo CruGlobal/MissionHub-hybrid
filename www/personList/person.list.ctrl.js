@@ -20,6 +20,10 @@ angular.module('missionhub')
     return filters;
   };
 
+  $scope.$on('current-org-updated', function(event, org) {
+    that.firstPage();
+  });
+
   that.refresh = function(config, replacePeopleWithData) {
     config = config ? config : that.filters();
     return api.people.get(config).then(function(data) {
