@@ -4,36 +4,7 @@ angular.module('missionhub')
     // put const here
     var that = this;
 
-    function facebook_token() {
-      return loginDetails.token();
-    }
-
-    function currentPerson() {
-      return personCache.person(that.currentPersonId);
-    }
-
-    function currentOrg() {
-      return organizationCache.organization(that.currentOrgId);
-    }
-
-    function setCurrentOrg(org) {
-      var includes = ['admins', 'users', 'surveys', 'labels', 'questions', 'interaction_types'];
-      return getOrganizations({
-        id: org.id,
-        include: includes.join(),
-        organization_id: org.id //please do not remove this line. The org request will break. This must be set so that the scope of the request is the organization with id = org.id. If you try to request an organization with a different id to organization_id it will return a 404. If organization_id is unset it will default to me.user.primary_organization_id which is fine for the first request but will prevent the user changing organizations
-      })
-      .then(function(data) {
-        var org = data.organization;
-        organizationCache.organization(org);
-        that.currentOrgId = org.id;
-        $rootScope.$broadcast('current-org-updated', org);
-      }, function(error) {
-        alert('Organization change failed because: ' + error.statusText);
-      });
-    }
-
-    function mhResource(endpoint, options) {
+    var mhResource = function (endpoint, options) {
       if(!loginDetails.token()) {
         var deferred = $q.defer();
         deferred.resolve({endpoint: []});
@@ -44,6 +15,36 @@ angular.module('missionhub')
         }
         return $resource(config.baseUrl + endpoint +'/:id', {id:'@id', facebook_token: facebook_token()}).get(options).$promise;
       }
+    };
+
+    function facebook_token() {
+      return loginDetails.token();
+    }
+
+    function currentPerson() {
+      return personCache.person(that.currentPersonId);
+    }
+
+    function currentOrg(org) {
+      if(!org) {
+        return organizationCache.organization(that.currentOrgId);
+      }
+      var includes = ['admins', 'users', 'surveys', 'labels', 'questions', 'interaction_types'];
+      return getOrganizations({
+        id: org.id,
+        include: includes.join(),
+        organization_id: org.id //please do not remove this line. The org request will break. This must be set so that the scope of the request is the organization with id = org.id. If you try to request an organization with a different id to organization_id it will return a 404. If organization_id is unset it will default to me.user.primary_organization_id which is fine for the first request but will prevent the user changing organizations
+      })
+      .then(function(data) {
+        var org = data.organization;
+        organizationCache.organization(org);
+        if(that.currentOrgId != org.id) {
+          that.currentOrgId = org.id;
+          $rootScope.$broadcast('current-org-updated', org);
+        }
+      }, function(error) {
+        alert('Organization change failed because: ' + error.statusText);
+      });
     }
 
     //define methods
@@ -56,7 +57,7 @@ angular.module('missionhub')
         that.currentPersonId = me.id;
         personCache.person(me);
         organizationListCache.list(me.all_organization_and_children);
-        setCurrentOrg({id: me.user.primary_organization_id}).then(function() {
+        currentOrg({id: me.user.primary_organization_id}).then(function() {
           mePromise.resolve(me);
         }, function(error) {
           mePromise.reject(error);
@@ -65,7 +66,7 @@ angular.module('missionhub')
         alert('Requesting your data failed due to: ' + error);
           mePromise.reject(error);
       });
-      return mePromise;
+      return mePromise.promise;
     }
 
     function getPeople(options) {
@@ -91,7 +92,6 @@ angular.module('missionhub')
     return {
       currentPerson: currentPerson,
       currentOrg: currentOrg,
-      setCurrentOrg: setCurrentOrg,
       getMe: getMe,
       people: {
         get: getPeople

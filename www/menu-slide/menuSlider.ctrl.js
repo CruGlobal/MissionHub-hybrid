@@ -11,14 +11,9 @@ angular.module('missionhub')
     var that = this;
     this.loginData = {};
 
-    $scope.$on('current-org-updated', function(event, org) {
-      if (that.orgPickerModal.isShown()) {
-        $scope.closeOrgPicker();
-      }
-      that.updateMenu(org);
-    });
+    $scope.$on('current-org-updated', that.updateMenu);
 
-    that.updateMenu = function(org) {
+    that.updateMenu = function(event, org) {
       //TODO: update menu with labels, surveys, users, admins, etc
     };
 
