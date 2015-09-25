@@ -5,19 +5,43 @@
       <button class="button button-clear" ng-click="closeFilters()">Close</button>
     </div>
   </ion-header-bar>
-  <ion-content>
-    <ion-list>
-      <ion-item>
+  <ion-content ng-controller="PeopleFiltersController as peopleFilters">
+    <ion-list class="filter-list">
+      <ion-item class="filter-list-header" ng-click="peopleFilters.showList[0] =! peopleFilters.showList[0]"
+                ng-class="{'open': peopleFilters.showList[0]}">
         Assigned To
       </ion-item>
-      <ion-item>
+      <ion-item ng-repeat="leader in peopleFilters.assigned_to_list" ng-show="peopleFilters.showList[0]"
+                class="item-collapsible">
+        {{leader.name}}
+      </ion-item>
+
+      <ion-item class="filter-list-header" ng-click="peopleFilters.showList[1] =! peopleFilters.showList[1]"
+                ng-class="{'open': peopleFilters.showList[1]}">
         Group
       </ion-item>
-      <ion-item>
+      <ion-item ng-repeat="group in peopleFilters.group_list" ng-show="peopleFilters.showList[1]"
+                class="item-collapsible">
+        {{group.name}}
+      </ion-item>
+
+      <ion-item class="filter-list-header" ng-click="peopleFilters.showList[2] =! peopleFilters.showList[2]"
+                ng-class="{'open': peopleFilters.showList[2]}">
         Tags
       </ion-item>
-      <ion-item>
+      <ion-item ng-repeat="tag in peopleFilters.tag_list" ng-show="peopleFilters.showList[2]"
+                class="item-collapsible">
+        {{tag.name}}
+      </ion-item>
+
+      <ion-item class="filter-list-header" ng-click="peopleFilters.showList[3] =! peopleFilters.showList[3]"
+                ng-class="{'open': peopleFilters.showList[3]}">
         Interactions
+      </ion-item>
+      <ion-item ng-repeat="interaction in peopleFilters.assigned_to_list" ng-show="peopleFilters.showList[3]"
+                ng-class="{'open': peopleFilters.showList[3]}"
+                class="item-collapsible">
+        {{interaction.name}}
       </ion-item>
     </ion-list>
   </ion-content>
