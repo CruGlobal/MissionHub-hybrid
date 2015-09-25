@@ -10,7 +10,7 @@ angular.module('missionhub')
     function person(newValue) {
       if (newValue.id) {
         cachedPeople[newValue.id] = cachedPeople[newValue.id] || {}
-        angular.extend(cachedPeople[newValue.id], newValue);
+        angular.merge(cachedPeople[newValue.id], newValue);
         return true;
       }
       return cachedPeople[newValue];
@@ -19,6 +19,28 @@ angular.module('missionhub')
     // return interface
     return {
       person: person
+    }
+  })
+  .factory('organizationCache', function() {
+    // set up variables and constants
+    var cachedOrganizations = {};
+
+    // define methods
+
+    // if you give person() a person object, it will cache it.
+    // if you give it an id, it will return a person object if it has it.
+    function organization(newValue) {
+      if (newValue.id) {
+        cachedOrganizations[newValue.id] = cachedOrganizations[newValue.id] || {}
+        angular.merge(cachedOrganizations[newValue.id], newValue);
+        return true;
+      }
+      return cachedOrganizations[newValue];
+    }
+
+    // return interface
+    return {
+      organization: organization
     }
   })
   .factory('organizationListCache', function() {
@@ -31,7 +53,7 @@ angular.module('missionhub')
           return cachedOrganizationList.length == 0;
         }
         cachedOrganizationList = [];
-        angular.extend(cachedOrganizationList, newList);
+        angular.merge(cachedOrganizationList, newList);
         return true;
       }
       return angular.extend([], cachedOrganizationList);
