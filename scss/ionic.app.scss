@@ -109,15 +109,21 @@ $profile-image-size: 96px;
 
 .filter-list .filter-list-header {
   margin-top: 10px;
+  i {
+    transition: 0.1s transform linear;
+  }
   &.open {
     color: $positive;
+    i {
+      transform: rotate(90deg);
+    }
   }
 }
 .filter-list .item.item-collapsible {
   line-height: 38px;
   padding-top: 0;
   padding-bottom: 0;
-  transition: 0.09s all linear;
+  transition: 0.1s line-height linear;
   &.ng-hide {
     line-height: 0px;
   }
