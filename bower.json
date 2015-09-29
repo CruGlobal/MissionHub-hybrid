@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.1.0"
   },
   "dependencies": {
-    "ti-segmented-control": "~0.0.2"
+    "ti-segmented-control": "~0.0.2",
+    "missionhub-js": "~0.0.1"
   }
 }

@@ -7,3 +7,4 @@ platforms/
 plugins/
 www/css/ionic.app.*
 .io-config.json
+www/lib
