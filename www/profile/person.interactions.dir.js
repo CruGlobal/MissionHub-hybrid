@@ -1,7 +1,7 @@
 angular.module('missionhub')
   .directive('personInteractions', function(){
     return {
-      restrict: 'C',
+      restrict: 'E',
       templateUrl: 'profile/person.interactions.html',
       controller: 'PersonInteractionsCtrl as interactionsList',
       scope: {

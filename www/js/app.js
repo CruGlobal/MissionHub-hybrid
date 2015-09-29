@@ -1,5 +1,5 @@
 
-angular.module('missionhub', ['ionic', 'ngResource', 'ti-segmented-control'])
+angular.module('missionhub', ['ionic', 'ngResource', 'ti-segmented-control', 'ngLodash'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

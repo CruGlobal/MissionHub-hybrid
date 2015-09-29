@@ -28,10 +28,10 @@
       <person-info ng-show="profile.isCurrentTab(0)" person="profile.person"></person-info>
 
       <!-- Interactions -->
-      <div class="person-interactions" ng-show="profile.isCurrentTab(1)" person="profile.person"></div>
+      <person-interactions class="padding-bottom" ng-show="profile.isCurrentTab(1)" person="profile.person"></person-interactions>
 
       <!-- Surveys -->
-      <div ng-show="profile.isCurrentTab(2)">Surveys</div>
+      <person-surveys ng-show="profile.isCurrentTab(2)" person="profile.person"></person-surveys>
     </div>
 
   </ion-content>

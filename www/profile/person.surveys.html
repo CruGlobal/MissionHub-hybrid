@@ -1,0 +1,22 @@
+<div class="list card" ng-repeat="survey in surveysList.surveys">
+
+  <div class="item item-divider item-divider-with-subtitle">
+    <h2>{{survey | surveyName}}</h2>
+    <span class="subtitle">{{survey.updated_at | date: 'dd MMM yyyy'}}</span>
+  </div>
+
+  <div class="item item-body padding-none">
+    <div class="item item-with-subtitle" ng-repeat="answer in survey.answers">
+      <h3>{{answer.question}}</h3>
+      <span class="subtitle">{{answer.value ? answer.value : 'Not Answered'}}</span>
+    </div>
+  </div>
+
+</div>
+
+<div ng-show="surveysList.loading" class="center-loader">
+  <ion-spinner icon="spiral"></ion-spinner>
+</div>
+<div class="card padding" ng-show="!surveysList.loading && surveysList.surveys.length == 0">
+  {{surveysList.person | personFullname}} doesn't have any survey.
+</div>
