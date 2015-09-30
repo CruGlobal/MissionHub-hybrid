@@ -8,40 +8,55 @@
   <ion-content ng-controller="PeopleFiltersController as peopleFilters">
     <ion-list class="filter-list">
       <ion-item class="filter-list-header item-icon-right" ng-click="peopleFilters.showList[0] =! peopleFilters.showList[0]"
-                ng-class="{'open': peopleFilters.showList[0]}">
-        Assigned To <i class="icon ion-ios-arrow-right"></i>
+                ng-class="{'open': peopleFilters.showList[0], 'filtered': peopleFilters.selectedCounts.leader != 0}">
+        Assigned To
+        <span class="subtitle">{{peopleFilters.selectedCounts.leader}}/{{peopleFilters.contactAssignments.length}} Selected</span>
+        <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
-      <ion-item ng-repeat="leader in peopleFilters.assigned_to_list" ng-show="peopleFilters.showList[0]"
-                class="item-collapsible">
-        {{leader.name}}
+      <ion-item ng-repeat="leader in peopleFilters.contactAssignments" ng-show="peopleFilters.showList[0]"
+                class="item-collapsible item-icon-right" ng-click="peopleFilters.toggleFilter('leader', leader)">
+        {{leader | personFullname}}
+        <i class="icon ion-ios-checkmark-empty" ng-show="leader.selected"></i>
       </ion-item>
+
 
       <ion-item class="filter-list-header item-icon-right" ng-click="peopleFilters.showList[1] =! peopleFilters.showList[1]"
-                ng-class="{'open': peopleFilters.showList[1]}">
-        Group <i class="icon ion-ios-arrow-right"></i>
+                ng-class="{'open': peopleFilters.showList[1], 'filtered': peopleFilters.selectedCounts.group != 0}">
+        Group
+        <span class="subtitle">{{peopleFilters.selectedCounts.group}}/{{peopleFilters.group_list.length}} Selected</span>
+        <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
       <ion-item ng-repeat="group in peopleFilters.group_list" ng-show="peopleFilters.showList[1]"
-                class="item-collapsible">
+                class="item-collapsible item-icon-right" ng-click="peopleFilters.toggleFilter('group', group)">
         {{group.name}}
+        <i class="icon ion-ios-checkmark-empty" ng-show="group.selected"></i>
       </ion-item>
+
 
       <ion-item class="filter-list-header item-icon-right" ng-click="peopleFilters.showList[2] =! peopleFilters.showList[2]"
-                ng-class="{'open': peopleFilters.showList[2]}">
-        Tags <i class="icon ion-ios-arrow-right"></i>
+                ng-class="{'open': peopleFilters.showList[2], 'filtered': peopleFilters.selectedCounts.label != 0}">
+        Label
+        <span class="subtitle">{{peopleFilters.selectedCounts.label}}/{{peopleFilters.labels.length}} Selected</span>
+        <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
-      <ion-item ng-repeat="tag in peopleFilters.tag_list" ng-show="peopleFilters.showList[2]"
-                class="item-collapsible">
-        {{tag.name}}
+      <ion-item ng-repeat="label in peopleFilters.labels" ng-show="peopleFilters.showList[2]"
+                class="item-collapsible item-icon-right" ng-click="peopleFilters.toggleFilter('label', label)">
+        {{label.name}}
+        <i class="icon ion-ios-checkmark-empty" ng-show="label.selected"></i>
       </ion-item>
 
+
       <ion-item class="filter-list-header item-icon-right" ng-click="peopleFilters.showList[3] =! peopleFilters.showList[3]"
-                ng-class="{'open': peopleFilters.showList[3]}">
-        Interactions <i class="icon ion-ios-arrow-right"></i>
+                ng-class="{'open': peopleFilters.showList[3], 'filtered': peopleFilters.selectedCounts.interaction != 0}">
+        Interactions
+        <span class="subtitle">{{peopleFilters.selectedCounts.interaction}}/{{peopleFilters.interactions.length}} Selected</span>
+        <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
-      <ion-item ng-repeat="interaction in peopleFilters.assigned_to_list" ng-show="peopleFilters.showList[3]"
+      <ion-item ng-repeat="interaction in peopleFilters.interactions" ng-show="peopleFilters.showList[3]"
                 ng-class="{'open': peopleFilters.showList[3]}"
-                class="item-collapsible">
+                class="item-collapsible item-icon-right" ng-click="peopleFilters.toggleFilter('interaction', interaction)">
         {{interaction.name}}
+        <i class="icon ion-ios-checkmark-empty" ng-show="interaction.selected"></i>
       </ion-item>
     </ion-list>
   </ion-content>

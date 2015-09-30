@@ -141,11 +141,15 @@ $profile-image-size: 96px;
   i {
     transition: 0.1s transform linear;
   }
-  &.open {
+  .subtitle {
+    color: darkgray;
+    font-size: 14px;
+  }
+  &.filtered .subtitle {
     color: $positive;
-    i {
-      transform: rotate(90deg);
-    }
+  }
+  &.open i {
+    transform: rotate(90deg);
   }
 }
 .filter-list .item.item-collapsible {
