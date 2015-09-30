@@ -10,12 +10,9 @@ angular.module('missionhub')
       if (!that.person.id) {
         return;
       }
-      var filters = {'filters[people_ids]': that.person.id};
-      var includes = ['initiators', 'interaction_type', 'receiver', 'creator', 'last_updater'];
-      var options = angular.extend({include: includes.join()}, filters);
 
-      api.interactions.get(options).then(function(data){
-        that.interactions = data['interactions'];
+      api.interactions.getInteractionsForPerson(that.person.id).then(function(data){
+        that.interactions = data.interactions;
         that.loading = false;
       }, function(error){
         that.loading = false;

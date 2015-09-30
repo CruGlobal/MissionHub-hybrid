@@ -10,11 +10,8 @@ angular.module('missionhub')
       if (!that.person.id) {
         return;
       }
-      var filters = {'filters[people_ids]': that.person.id};
-      var includes = ['answer_sheets', 'answers'];
-      var options = angular.extend({include: includes.join()}, filters);
 
-      api.people.get({id: that.person.id, include: includes.join()}).then(function(data) {
+      api.people.getPersonWithSurveyAnswers(that.person.id).then(function(data) {
         that.surveys = data['person']['answer_sheets'];
         that.loading = false;
         angular.merge(that.person, data.person);

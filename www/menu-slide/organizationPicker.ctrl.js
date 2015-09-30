@@ -8,7 +8,7 @@ angular.module('missionhub')
     that.orgList = organizationListCache.list();
 
     that.refresh = function() {
-      api.getMe()
+      api.people.getMe()
         .then(function() {
           that.orgList = organizationListCache.list();
           that.displayCurrentOrg(undefined, api.currentOrg())

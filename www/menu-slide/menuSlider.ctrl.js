@@ -25,7 +25,7 @@ angular.module('missionhub')
     }).then(function(modal) {
       that.loginModal = modal;
       if (loginDetails.token()) {
-        api.getMe();
+        api.people.getMe();
       } else {
         that.loginModal.show();
       }
@@ -71,7 +71,7 @@ angular.module('missionhub')
           function(userData) {
             if(userData && userData.authResponse && userData.authResponse.accessToken) {
               loginDetails.token(userData.authResponse.accessToken);
-              api.getMe();
+              api.people.getMe();
               that.closeLogin();
             }
           },
