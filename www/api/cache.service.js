@@ -8,6 +8,9 @@ angular.module('missionhub')
     // if you give person() a person object, it will cache it.
     // if you give it an id, it will return a person object if it has it.
     function person(newValue) {
+      if (!newValue) {
+        return {};
+      }
       if (newValue.id) {
         cachedPeople[newValue.id] = cachedPeople[newValue.id] || {}
         angular.merge(cachedPeople[newValue.id], newValue);

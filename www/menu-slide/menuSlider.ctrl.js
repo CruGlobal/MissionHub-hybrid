@@ -1,5 +1,5 @@
 angular.module('missionhub')
-  .controller('AppCtrl', function($scope, $ionicModal, $timeout, loginDetails, api) {
+  .controller('AppCtrl', function($scope, $ionicModal, $timeout, loginDetails, api, lodash, $filter) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -9,13 +9,23 @@ angular.module('missionhub')
     //});
 
     var that = this;
-    this.loginData = {};
-
-    $scope.$on('current-org-updated', that.updateMenu);
+    that.loginData = {};
+    that.currentUser = {id: 'me'};
+    that.contactAssignments = [];
+    that.surveys = [];
+    that.labels = [];
 
     that.updateMenu = function(event, org) {
       //TODO: update menu with labels, surveys, users, admins, etc
+      that.currentUser = api.currentPerson();
+      that.labels = lodash.sortBy(org.labels, 'name');
+      that.contactAssignments = lodash.sortBy(org.admins.concat(org.users), function(contactAssignment) {
+        return $filter('personFullname')(contactAssignment);
+      });
+      that.surveys = lodash.sortBy(org.surveys, 'title');
     };
+
+    $scope.$on('current-org-updated', that.updateMenu);
 
     // init the modals
     $ionicModal.fromTemplateUrl('personList/login.html', {
@@ -104,6 +114,6 @@ angular.module('missionhub')
         $scope.closeLogin();
       }, 1000);
     };
-  })
+  });
 
 

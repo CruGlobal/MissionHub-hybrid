@@ -1,5 +1,5 @@
 angular.module('missionhub')
-.controller('PersonListCtrl', function($scope, api) {
+.controller('PersonListCtrl', function($scope, $stateParams, api) {
   var that = this;
 
   that.people = [];
@@ -15,6 +15,14 @@ angular.module('missionhub')
 
     if (that.searchTerm) {
       filters['filters[name_or_email_like]'] = that.searchTerm;
+    }
+
+    if ($stateParams.assigned_to) {
+      filters['filters[assigned_to]'] = $stateParams.assigned_to;
+    }
+
+    if ($stateParams.labels) {
+      filters['filters[labels]'] = $stateParams.labels;
     }
 
     return filters;

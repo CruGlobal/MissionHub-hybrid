@@ -20,11 +20,20 @@
         <ion-item menu-close href="#/app/index">
           All Contacts
         </ion-item>
-        <ion-item menu-close href="#/app/index?filters.assigned_to=me">
+        <ion-item menu-close ng-href="#/app/index?assigned_to={{app.currentUser.id}}">
           My Contacts
         </ion-item>
-        <ion-item menu-close href="#/surveys">
-          Surverys
+        <div class="item item-divider">Labels</div>
+        <ion-item ng-repeat="label in app.labels" menu-close ng-href="#/app/index?labels={{label.id}}">
+          {{label.name}}
+        </ion-item>
+        <div class="item item-divider">Contact Assignments</div>
+        <ion-item ng-repeat="contactAssignment in app.contactAssignments" menu-close ng-href="#/app/index?assigned_to={{contactAssignment.id}}">
+          {{contactAssignment | personFullname}}
+        </ion-item>
+        <div class="item item-divider">Surveys</div>
+        <ion-item ng-repeat="survey in app.surveys" menu-close ng-href="#/surveys/{{survey.id}}">
+          {{survey.title}}
         </ion-item>
         <div class="item item-divider">Settings</div>
         <ion-item menu-close ng-click="app.orgPickerModal.show()">
