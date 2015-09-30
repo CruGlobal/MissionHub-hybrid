@@ -6,6 +6,7 @@ angular.module('missionhub')
   that.offset = -20;
   that.limit = 20;
   that.hasMorePages = true;
+  that.loading = true;
 
   that.filters = function() {
     var filters = {
@@ -33,10 +34,12 @@ angular.module('missionhub')
   });
 
   that.refresh = function(config, replacePeopleWithData) {
+    that.loading = true;
     config = config ? config : that.filters();
     return api.people.get(config).then(function(data) {
       that.people = replacePeopleWithData ? data.people : that.people.concat(data.people);
       that.hasMorePages = data.people.length == that.limit;
+      that.loading = false;
     });
   };
 

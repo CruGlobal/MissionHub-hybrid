@@ -23,5 +23,8 @@
       </ion-item>
     </ion-list>
     <ion-infinite-scroll on-infinite="peopleList.nextPage()" distance="25%" ng-if="peopleList.hasMorePages"></ion-infinite-scroll>
+    <div class="card padding" ng-show="!peopleList.loading && peopleList.people.length == 0">
+      There are no people in this list.
+    </div>
   </ion-content>
 </ion-view>
