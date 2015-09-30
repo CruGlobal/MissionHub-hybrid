@@ -6,6 +6,8 @@
   },
   "dependencies": {
     "ti-segmented-control": "~0.0.2",
-    "missionhub-js": "~0.0.1"
+    "missionhub-js": "~0.0.1",
+    "angular-resource": "1.4.3",
+    "ng-lodash": "~0.2.3"
   }
 }
