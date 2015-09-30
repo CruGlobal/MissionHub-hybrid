@@ -27,8 +27,14 @@
     "ios"
   ],
   "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1",
+
+    "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
+
     "protractor": "protractor e2e-tests/protractor.conf.js"
   }
 }

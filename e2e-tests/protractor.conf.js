@@ -1,4 +1,4 @@
-var private = require('./private.js');
+var private = require('./private');
 
 exports.config = {
   allScriptsTimeout: 11000,
