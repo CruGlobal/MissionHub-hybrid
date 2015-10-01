@@ -2,19 +2,19 @@
   "name": "missionhub-h",
   "version": "1.0.0",
   "description": "MissionHub H: An Ionic project",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "bower": "^1.3.3",
-    "gulp-util": "^2.2.14",
-    "shelljs": "^0.3.0",
     "gulp": "^3.5.6",
-    "gulp-sass": "^1.3.3",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
+    "gulp-sass": "^1.3.3",
+    "gulp-util": "^2.2.14",
     "http-server": "^0.6.1",
-    "protractor": "^2.1.0"
+    "phantomjs": "^1.9.18",
+    "protractor": "^2.1.0",
+    "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
     "cordova-plugin-device",
@@ -28,13 +28,11 @@
   ],
   "scripts": {
     "postinstall": "bower install",
-
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1",
-
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
-
-    "protractor": "protractor e2e-tests/protractor.conf.js"
+    "protractor": "protractor e2e-tests/protractor.conf.js",
+    "protractor:chrome": "protractor e2e-tests/protractor.conf.js --browser=chrome"
   }
 }

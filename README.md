@@ -36,6 +36,12 @@ npm run protractor
 This script will execute the end-to-end tests against the application being hosted on the
 development server.
 
+Protractor will run in headless mode by default but you can point chrome if you want with this:
+
+```
+npm run protractor:chrome
+```
+
 [protractor]: https://github.com/angular/protractor
 [jasmine]: http://jasmine.github.io
 
