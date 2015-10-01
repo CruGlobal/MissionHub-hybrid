@@ -26,7 +26,8 @@ angular.module('missionhub', ['ionic', 'missionhub-js', 'ti-segmented-control', 
   })
 
   .state('app.index', {
-    url: '/index?assigned_to&labels',
+    url: '/index',
+    reloadOnSearch : false,
     views: {
       'menuContent': {
         templateUrl: 'personList/person.list.html',

@@ -1,5 +1,5 @@
 angular.module('missionhub')
-  .controller('AppCtrl', function($scope, $ionicModal, $timeout, loginDetails, api, lodash, $filter) {
+  .controller('AppCtrl', function($scope, $ionicModal, $timeout, loginDetails, api, lodash, $filter, personFiltersBuilder) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -45,6 +45,7 @@ angular.module('missionhub')
     }).then(function(modal) {
       that.filtersModal = modal;
     });
+
     $ionicModal.fromTemplateUrl('menu-slide/organizationPicker.html', {
       scope: $scope
     }).then(function(modal) {
@@ -61,6 +62,7 @@ angular.module('missionhub')
 
     that.openFilters = function() {
       that.filtersModal.show();
+      $scope.$broadcast('filtersModal.show');
     };
     $scope.closeFilters = function() {
       that.filtersModal.hide();
@@ -113,6 +115,16 @@ angular.module('missionhub')
       $timeout(function() {
         $scope.closeLogin();
       }, 1000);
+    };
+
+    that.filterAllContacts = function() {
+      personFiltersBuilder.clear().go();
+    };
+    that.filterAssignedTo = function(id) {
+      personFiltersBuilder.clear().set('assigned_to', id).go();
+    };
+    that.filterLabel = function(id) {
+      personFiltersBuilder.clear().set('labels', id).go();
     };
   });
 

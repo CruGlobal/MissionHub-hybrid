@@ -1,5 +1,5 @@
 angular.module('missionhub')
-.controller('PersonListCtrl', function($scope, $stateParams, api) {
+.controller('PersonListCtrl', function($scope, $stateParams, api, personFiltersBuilder) {
   var that = this;
 
   that.people = [];
@@ -9,6 +9,7 @@ angular.module('missionhub')
   that.loading = true;
 
   that.filters = function() {
+    var _personFilters = personFiltersBuilder.get();
     var filters = {
       limit: that.limit,
       offset: that.offset
@@ -18,19 +19,19 @@ angular.module('missionhub')
       filters['filters[name_or_email_like]'] = that.searchTerm;
     }
 
-    if ($stateParams.assigned_to) {
-      filters['filters[assigned_to]'] = $stateParams.assigned_to;
+    if (_personFilters.assigned_to.length > 0) {
+      filters['filters[assigned_to]'] = _personFilters.assigned_to;
     }
 
-    if ($stateParams.labels) {
-      filters['filters[labels]'] = $stateParams.labels;
+    if (_personFilters.labels > 0) {
+      filters['filters[labels]'] = _personFilters.labels;
     }
 
     return filters;
   };
 
   $scope.$on('current-org-updated', function(event, org) {
-    that.firstPage();
+    personFiltersBuilder.clear();
   });
 
   that.refresh = function(config, replacePeopleWithData) {
@@ -65,5 +66,7 @@ angular.module('missionhub')
     that.offset = 0;
     that.refresh(that.filters(), true);
   };
+
+  $scope.$on('personFilters.doneChanging', that.firstPage);
 
 });
