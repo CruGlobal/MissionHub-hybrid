@@ -66,6 +66,7 @@ angular.module('missionhub')
     };
     $scope.closeFilters = function() {
       that.filtersModal.hide();
+      personFiltersBuilder.go();
     };
     $scope.closeOrgPicker = function() {
       that.orgPickerModal.hide();

@@ -2,7 +2,10 @@ angular.module('missionhub')
   .controller('PeopleFiltersController', function($scope, $filter, lodash, personFiltersBuilder) {
     var that = this;
 
-    that.showList = [false, false, false, false];
+    function resetShownLists() {
+      that.showList = [false, false, false, false];
+    }
+    resetShownLists();
     function resetCounts() {
       that.selectedCounts = {leader: 0, group: 0, label: 0, interaction: 0}
     }
@@ -31,6 +34,7 @@ angular.module('missionhub')
 
     $scope.$on('filtersModal.show', function() {
       resetCounts();
+      resetShownLists();
       var filters = personFiltersBuilder.get();
       lodash.each(that.contactAssignments, function(contact) {
         contact.selected = lodash.indexOf(filters.assigned_to, contact.id) != -1;

@@ -44,6 +44,7 @@ angular.module('missionhub')
       } else {
         filters[key].push(value);
       }
+      filters[key] = lodash.unique(filters[key]);
       $rootScope.$broadcast('personFilters.change');
       return _interface;
     }
